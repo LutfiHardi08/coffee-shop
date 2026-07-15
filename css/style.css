@@ -61,3 +61,73 @@ h1, h2, .font-serif {
   opacity: 1;
   transform: translateY(0);
 }
+
+.hero-section {
+  padding: 120px 0 80px 0;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.hero-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 32px;
+  padding: 0 120px; /* Sesuai dengan spesifikasi Grid Margin kita */
+  align-items: center;
+}
+
+.hero-content {
+  grid-column: span 6;
+}
+
+.category-tag {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-accent);
+  font-weight: 600;
+  margin-bottom: 24px;
+  display: inline-block;
+}
+
+.hero-lead {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  margin: 24px 0 40px 0;
+}
+
+.hero-visual-wrapper {
+  grid-column: span 6;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.hero-image-card {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  aspect-ratio: 3 / 4; /* Rasio portrait yang sangat bernuansa editorial majalah */
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(15%); /* Memberikan kesan estetik senada */
+  transition: var(--transition-smooth);
+}
+
+.hero-image-card:hover .hero-image {
+  transform: scale(1.05); /* Efek zoom-in halus */
+}
+
+.image-overlay-caption {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  color: #FFF;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
