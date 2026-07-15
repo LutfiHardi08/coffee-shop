@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     /* ==========================================
-       1. RESPONSIVE MOBILE NAVBAR
+       1. SMART MOBILE NAVBAR TOGGLE
        ========================================== */
     const navToggle = document.getElementById('navToggle');
     const navMenu = document.getElementById('navMenu');
@@ -11,41 +11,42 @@ document.addEventListener('DOMContentLoaded', () => {
         navToggle.addEventListener('click', () => {
             navToggle.classList.toggle('active');
             navMenu.classList.toggle('open');
+            // Prevent background scrolling when menu open on mobile
+            document.body.style.overflowY = navMenu.classList.contains('open') ? 'hidden' : '';
         });
 
-        // Close menu when links are clicked on Mobile Devices
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 navToggle.classList.remove('active');
                 navMenu.classList.remove('open');
+                document.body.style.overflowY = '';
             });
         });
     }
 
     /* ==========================================
-       2. SCROLL EFFECT ON NAVBAR
+       2. SCROLL DETECTION (NAVBAR LOOK CHANGE)
        ========================================== */
     const navbar = document.querySelector('.navbar');
-    
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
+    const handleScroll = () => {
+        if (window.scrollY > 40) {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
         }
-    });
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     /* ==========================================
-       3. ACTIVE LINK STATE ON SCROLL
+       3. PRECISE ACTIVE NAVIGATION STATE
        ========================================== */
     const sections = document.querySelectorAll('section[id]');
-
     function highlightActiveSection() {
         const scrollY = window.pageYOffset;
 
         sections.forEach(current => {
             const sectionHeight = current.offsetHeight;
-            const sectionTop = current.offsetTop - 120; // Offset for navbar height
+            const sectionTop = current.offsetTop - 160; 
             const sectionId = current.getAttribute('id');
             const targetLink = document.querySelector(`.nav-menu a[href*=${sectionId}]`);
 
@@ -58,33 +59,28 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
-    window.addEventListener('scroll', highlightActiveSection);
+    window.addEventListener('scroll', highlightActiveSection, { passive: true });
 
     /* ==========================================
-       4. BACK TO TOP BUTTON
+       4. BACK TO TOP FUNCTIONALITY
        ========================================== */
     const backToTopBtn = document.getElementById('backToTop');
-
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 500) {
+        if (window.scrollY > 600) {
             backToTopBtn.classList.add('show');
         } else {
             backToTopBtn.classList.remove('show');
         }
-    });
+    }, { passive: true });
 
     if (backToTopBtn) {
         backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
 
     /* ==========================================
-       5. SMOOTH SCROLL FOR ANCHOR LINKS
+       5. MATHEMATICALLY ALIGNED SMOOTH SCROLL
        ========================================== */
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
@@ -95,10 +91,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetElement = document.querySelector(targetId);
             
             if (targetElement) {
-                const offsetPosition = targetElement.offsetTop - 80; // Offset alignment
+                const navbarHeight = navbar.offsetHeight;
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - (navbarHeight - 10);
                 
                 window.scrollTo({
-                    top: offsetPosition,
+                    top: targetPosition,
                     behavior: 'smooth'
                 });
             }
@@ -106,49 +103,43 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ==========================================
-       6. SCROLL REVEAL (INTERSECTION OBSERVER)
+       6. OPTIMIZED INTERSECTION OBSERVER (REVEAL)
        ========================================== */
     const revealElements = document.querySelectorAll('.reveal');
-
-    const revealOnScrollObserver = new IntersectionObserver((entries, observer) => {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('active');
-                observer.unobserve(entry.target); // Reveal animation occurs only once
+                observer.unobserve(entry.target);
             }
         });
     }, {
-        threshold: 0.15, // Triggers when 15% of element is visible
-        rootMargin: '0px 0px -50px 0px' // Slightly delayed reveal for premium feeling
+        threshold: 0.1,
+        rootMargin: '0px 0px -40px 0px'
     });
 
-    revealElements.forEach(el => {
-        revealOnScrollObserver.observe(el);
-    });
+    revealElements.forEach(el => revealObserver.observe(el));
 
     /* ==========================================
-       7. CLIENT-SIDE RESERVATION FEEDBACK (UX Flow)
+       7. MICRO-INTERACTION: RESERVATION FLOW
        ========================================== */
     const reserveForm = document.getElementById('reserveForm');
     if (reserveForm) {
         reserveForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            
-            // Client side success feedback
             const btn = reserveForm.querySelector('button[type="submit"]');
             const originalText = btn.textContent;
             
             btn.disabled = true;
-            btn.textContent = 'Memproses... ☕';
+            btn.textContent = 'Memverifikasi Meja... ☕';
             
             setTimeout(() => {
-                btn.textContent = 'Pemesanan Berhasil!';
-                btn.style.backgroundColor = '#2e7d32'; // Green success color
-                btn.style.borderColor = '#2e7d32';
+                btn.textContent = 'Reservasi Berhasil!';
+                btn.style.backgroundColor = '#4E7C59'; 
+                btn.style.borderColor = '#4E7C59';
                 
-                alert(`Terima kasih ${document.getElementById('fullName').value}! Reservasi meja Anda berhasil diproses secara lokal.`);
+                alert(`Terima kasih, ${document.getElementById('fullName').value}. Slot premium Anda telah kami amankan secara lokal.`);
                 
-                // Reset form state after 2 seconds
                 setTimeout(() => {
                     reserveForm.reset();
                     btn.disabled = false;
@@ -156,8 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     btn.style.backgroundColor = ''; 
                     btn.style.borderColor = '';
                 }, 2000);
-
-            }, 1200);
+            }, 1500);
         });
     }
 });
