@@ -1,378 +1,208 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aroma & Co. | Modern Coffee Experience</title>
-    <!-- Google Fonts: Playfair Display untuk Heading, Inter untuk Body Text -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Sensory Roast — Modern & Elegant Coffee Experience</title>
+  
+  <!-- Integrasi Font Premium dari Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Import File CSS Eksternal -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- NAVBAR -->
-    <header class="navbar">
-        <div class="nav-container">
-            <a href="#" class="nav-logo">Aroma<span>&</span>Co.</a>
+  <!-- NAVIGATION BAR -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="#" class="logo">SENSORY.</a>
+      <ul class="nav-links">
+        <li><a href="#">Beranda</a></li>
+        <li><a href="#menu">Rasio Menu</a></li>
+        <li><a href="#journey">Perjalanan</a></li>
+        <li><a href="#lokasi">Kontak</a></li>
+      </ul>
+      <a href="#lokasi" class="nav-cta">Reservasi</a>
+      <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION (ASIMETRIS EDITORIAL) -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-text reveal-on-scroll">
+        <span class="hero-tag">Seni Menikmati Waktu</span>
+        <h1>Sajian Presisi, Rasa yang Abadi.</h1>
+        <p>Kami percaya kelezatan kopi lahir dari kesabaran. Menghubungkan kurasi biji kopi organik lokal dengan teknik penyeduhan modern berstandar tinggi.</p>
+        <div class="hero-actions">
+          <a href="#menu" class="btn btn-solid">Eksplorasi Menu</a>
+          <a href="#journey" class="btn btn-link">Kisah Biji Kopi</a>
+        </div>
+      </div>
+      <div class="hero-visual reveal-on-scroll">
+        <div class="hero-img-container">
+          <div class="hero-img-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
+              <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
+              <path d="M6 1v3" />
+              <path d="M10 1v3" />
+              <path d="M14 1v3" />
+            </svg>
+            <span>The Slow Drip Method</span>
+            <p class="font-serif" style="font-size: 18px; font-style: italic;">"Patience is the main ingredient of extraction."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE BREW SECTION -->
+  <section id="menu" class="brew-section">
+    <div class="container">
+      <div class="section-header reveal-on-scroll">
+        <span>Rasio Sempurna</span>
+        <h2>Formula Cangkir Anda</h2>
+        <p>Kami merancang takaran bahan secara transparan. Klik salah satu menu andalan di bawah untuk melihat anatomi pembentuk rasa di dalam setiap gelasnya.</p>
+      </div>
+
+      <div class="brew-grid">
+        <!-- Kolom Kiri: Selector -->
+        <div class="brew-selector reveal-on-scroll">
+          <button class="menu-item active" data-menu="flatwhite">
+            <div class="menu-item-info">
+              <h3>Flat White</h3>
+              <p>Espresso pekat dengan tekstur susu super halus</p>
+            </div>
+            <span class="menu-item-arrow">→</span>
+          </button>
+
+          <button class="menu-item" data-menu="latte">
+            <div class="menu-item-info">
+              <h3>Caffè Latte</h3>
+              <p>Sentuhan susu melimpah dengan foam lembut di atasnya</p>
+            </div>
+            <span class="menu-item-arrow">→</span>
+          </button>
+
+          <button class="menu-item" data-menu="cortado">
+            <div class="menu-item-info">
+              <h3>Cortado</h3>
+              <p>Rasio presisi 1:1 antara espresso pekat dan susu hangat</p>
+            </div>
+            <span class="menu-item-arrow">→</span>
+          </button>
+        </div>
+
+        <!-- Kolom Kanan: Visualizer -->
+        <div class="brew-visualizer reveal-on-scroll">
+          <div class="glass-container">
+            <div class="glass-liquid">
+              <div id="layer-espresso" class="layer layer-espresso"></div>
+              <div id="layer-milk" class="layer layer-milk"></div>
+              <div id="layer-foam" class="layer layer-foam"></div>
+            </div>
+          </div>
+
+          <div class="ratio-details">
+            <h3 id="ratio-name" class="ratio-title">Flat White</h3>
+            <p id="ratio-desc" class="ratio-desc">Kombinasi klasik dengan lapisan susu berbusa sangat tipis (microfoam) yang menjaga kekuatan rasa espresso.</p>
             
-            <nav class="nav-menu" id="navMenu">
-                <a href="#hero" class="nav-link active">Home</a>
-                <a href="#menu" class="nav-link">Menu</a>
-                <a href="#promo" class="nav-link">Promo</a>
-                <a href="#gallery" class="nav-link">Gallery</a>
-                <a href="#reservation" class="nav-link">Reserve</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </nav>
-
-            <div class="nav-toggle" id="navToggle">
-                <span></span>
-                <span></span>
-                <span></span>
+            <div class="indicator-row">
+              <div class="indicator-dot" style="background-color: var(--color-text-primary);"></div>
+              <span>Espresso: <strong id="val-espresso">30%</strong></span>
             </div>
-        </div>
-    </header>
-
-    <main>
-        <!-- 1. HERO SECTION -->
-<header class="hero-section">
-  <div class="hero-container">
-    
-    <!-- SISI KIRI: Tipografi Besar & Minimalis -->
-    <div class="hero-content reveal-on-scroll">
-      <span class="category-tag">The Art of Slow Brewing</span>
-      <h1>Sajian Presisi,<br>Rasa yang Abadi.</h1>
-      <p class="hero-lead">Kami percaya secangkir kopi terbaik lahir dari kesabaran. Menghubungkan kurasi biji kopi organik lokal dengan teknik penyeduhan modern berstandar tinggi.</p>
-      
-      <div class="hero-actions">
-        <button class="btn-primary">Kunjungi Gerai</button>
-        <a href="#menu" class="btn-secondary">Lihat Menu Eksklusif</a>
-      </div>
-    </div>
-
-    <!-- SISI KANAN: Visual Sinematik Portrait (Asimetris) -->
-    <div class="hero-visual-wrapper reveal-on-scroll">
-      <div class="hero-image-card">
-        <img src="path-to-your-cinematic-coffee-image.webp" alt="Proses ekstraksi espresso yang presisi" class="hero-image" />
-        <div class="image-overlay-caption">
-          <p class="font-serif">Batch No. 042</p>
-          <span>Single Origin Flores Bajawa</span>
+            <div class="indicator-row">
+              <div class="indicator-dot" style="background-color: var(--color-border);"></div>
+              <span>Steamed Milk: <strong id="val-milk">60%</strong></span>
+            </div>
+            <div class="indicator-row">
+              <div class="indicator-dot" style="background-color: var(--color-bg-primary); border: 1px solid var(--color-text-primary);"></div>
+              <span>Microfoam: <strong id="val-foam">10%</strong></span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+  </section>
 
-  </div>
-</header>
+  <!-- THE BEAN JOURNEY TIMELINE -->
+  <section id="journey" class="journey-section">
+    <div class="container">
+      <div class="section-header reveal-on-scroll">
+        <span>Sourcing & Process</span>
+        <h2>Perjalanan Secangkir Kopi</h2>
+        <p>Dari tanah vulkanik nusantara hingga mendarat dengan anggun di atas meja kayu Anda.</p>
+      </div>
 
-        <!-- 2. MENU SECTION -->
-        <section id="menu" class="section-padding">
-            <div class="container">
-                <div class="section-header reveal">
-                    <span class="section-subtitle">Our Signature</span>
-                    <h2 class="section-title">Popular Brews</h2>
-                    <div class="section-line"></div>
-                </div>
-                
-                <div class="menu-grid">
-                    <!-- Item 1 -->
-                    <div class="menu-card reveal">
-                        <div class="menu-img-wrapper">
-                            <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=600&auto=format&fit=crop" alt="Espresso" class="menu-img">
-                        </div>
-                        <div class="menu-info">
-                            <div class="menu-title-row">
-                                <h4 class="menu-item-name">Espresso Solo</h4>
-                                <span class="menu-item-price">Rp 25k</span>
-                            </div>
-                            <p class="menu-item-desc">Satu shot konsentrat kopi murni dari biji Espresso blend House Signature.</p>
-                        </div>
-                    </div>
-                    <!-- Item 2 -->
-                    <div class="menu-card reveal">
-                        <div class="menu-img-wrapper">
-                            <img src="https://images.unsplash.com/photo-1570968915860-54d5c301fc9f?q=80&w=600&auto=format&fit=crop" alt="Cappuccino" class="menu-img">
-                        </div>
-                        <div class="menu-info">
-                            <div class="menu-title-row">
-                                <h4 class="menu-item-name">Classic Cappuccino</h4>
-                                <span class="menu-item-price">Rp 35k</span>
-                            </div>
-                            <p class="menu-item-desc">Paduan seimbang antara espresso, susu hangat bertekstur, dan foam tebal.</p>
-                        </div>
-                    </div>
-                    <!-- Item 3 -->
-                    <div class="menu-card reveal">
-                        <div class="menu-img-wrapper">
-                            <img src="https://images.unsplash.com/photo-1572442388796-11668a720649?q=80&w=600&auto=format&fit=crop" alt="Caramel Macchiato" class="menu-img">
-                        </div>
-                        <div class="menu-info">
-                            <div class="menu-title-row">
-                                <h4 class="menu-item-name">Caramel Macchiato</h4>
-                                <span class="menu-item-price">Rp 40k</span>
-                            </div>
-                            <p class="menu-item-desc">Espresso premium dengan sirup vanila lembut, susu, dan saus karamel mewah.</p>
-                        </div>
-                    </div>
-                    <!-- Item 4 -->
-                    <div class="menu-card reveal">
-                        <div class="menu-img-wrapper">
-                            <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=600&auto=format&fit=crop" alt="V60 Drip" class="menu-img">
-                        </div>
-                        <div class="menu-info">
-                            <div class="menu-title-row">
-                                <h4 class="menu-item-name">V60 Pour Over</h4>
-                                <span class="menu-item-price">Rp 32k</span>
-                            </div>
-                            <p class="menu-item-desc">Metode seduh manual untuk menonjolkan keasaman buah alami biji kopi single origin.</p>
-                        </div>
-                    </div>
-                    <!-- Item 5 -->
-                    <div class="menu-card reveal">
-                        <div class="menu-img-wrapper">
-                            <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?q=80&w=600&auto=format&fit=crop" alt="Croissant" class="menu-img">
-                        </div>
-                        <div class="menu-info">
-                            <div class="menu-title-row">
-                                <h4 class="menu-item-name">Butter Croissant</h4>
-                                <span class="menu-item-price">Rp 28k</span>
-                            </div>
-                            <p class="menu-item-desc">Pastry khas Perancis yang renyah di luar, berongga lembut dan gurih di dalam.</p>
-                        </div>
-                    </div>
-                    <!-- Item 6 -->
-                    <div class="menu-card reveal">
-                        <div class="menu-img-wrapper">
-                            <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=600&auto=format&fit=crop" alt="Cafe Latte" class="menu-img">
-                        </div>
-                        <div class="menu-info">
-                            <div class="menu-title-row">
-                                <h4 class="menu-item-name">Caffè Latte</h4>
-                                <span class="menu-item-price">Rp 35k</span>
-                            </div>
-                            <p class="menu-item-desc">Espresso creamy yang dipadukan dengan steamed milk bertekstur microfoam halus.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 3. PROMO SECTION -->
-        <section id="promo" class="promo-section reveal">
-            <div class="promo-overlay"></div>
-            <div class="promo-content">
-                <span class="promo-tag">Weekly Highlight</span>
-                <h2 class="promo-title">Buy 1 Get 1 Free</h2>
-                <p class="promo-subtitle">Setiap hari Jumat mulai pukul 14.00 - 17.00 WIB. Berlaku untuk semua varian Espresso-based drinks. Mari nikmati akhir pekan lebih awal!</p>
-                <a href="#reservation" class="btn btn-accent">Order Now</a>
-            </div>
-        </section>
-
-        <!-- 4. GALLERY SECTION -->
-        <section id="gallery" class="section-padding">
-            <div class="container">
-                <div class="section-header reveal">
-                    <span class="section-subtitle">Visual Experience</span>
-                    <h2 class="section-title">Our Sanctuary</h2>
-                    <div class="section-line"></div>
-                </div>
-                
-                <div class="gallery-grid">
-                    <!-- Pic 1 -->
-                    <div class="gallery-item reveal">
-                        <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?q=80&w=600&auto=format&fit=crop" alt="Coffee bar counter" class="gallery-img">
-                    </div>
-                    <!-- Pic 2 -->
-                    <div class="gallery-item reveal">
-                        <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=80&w=600&auto=format&fit=crop" alt="Brewing espresso close up" class="gallery-img">
-                    </div>
-                    <!-- Pic 3 -->
-                    <div class="gallery-item reveal">
-                        <img src="https://images.unsplash.com/photo-1498804103079-a6351b050096?q=80&w=600&auto=format&fit=crop" alt="Enjoying coffee" class="gallery-img">
-                    </div>
-                    <!-- Pic 4 -->
-                    <div class="gallery-item reveal">
-                        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=600&auto=format&fit=crop" alt="Cozy seating area" class="gallery-img">
-                    </div>
-                    <!-- Pic 5 -->
-                    <div class="gallery-item reveal">
-                        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=600&auto=format&fit=crop" alt="Lattes on table" class="gallery-img">
-                    </div>
-                    <!-- Pic 6 -->
-                    <div class="gallery-item reveal">
-                        <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?q=80&w=600&auto=format&fit=crop" alt="Aesthetic warm lights" class="gallery-img">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. RESERVATION SECTION -->
-        <section id="reservation" class="section-padding reservation-section">
-            <div class="container container-small">
-                <div class="section-header reveal">
-                    <span class="section-subtitle">Book A Table</span>
-                    <h2 class="section-title">Secured Seating</h2>
-                    <p style="color: #666; font-size: 0.95rem; margin-top: 10px;">Hindari antrean panjang dan pastikan tempat terbaik Anda siap sebelum kedatangan.</p>
-                    <div class="section-line"></div>
-                </div>
-
-                <form class="reservation-form reveal" id="reserveForm">
-                    <div class="form-group">
-                        <label for="fullName">Nama Lengkap</label>
-                        <input type="text" id="fullName" placeholder="Masukkan nama lengkap Anda" required>
-                    </div>
-                    <div class="form-group-row">
-                        <div class="form-group">
-                            <label for="email">Alamat Email</label>
-                            <input type="email" id="email" placeholder="nama@email.com" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Nomor Telepon</label>
-                            <input type="tel" id="phone" placeholder="0812xxxxxx" required>
-                        </div>
-                    </div>
-                    <div class="form-group-row">
-                        <div class="form-group">
-                            <label for="guests">Jumlah Orang</label>
-                            <select id="guests" required>
-                                <option value="" disabled selected>Pilih jumlah orang</option>
-                                <option value="1">1 Orang</option>
-                                <option value="2">2 Orang</option>
-                                <option value="3">3 Orang</option>
-                                <option value="4">4 Orang</option>
-                                <option value="5+">Lebih dari 4 Orang</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="date">Tanggal</label>
-                            <input type="date" id="date" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="time">Jam</label>
-                            <input type="time" id="time" required>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block">Reserve Now</button>
-                </form>
-            </div>
-        </section>
-
-        <!-- 6. CONTACT SECTION -->
-        <section id="contact" class="section-padding bg-light">
-            <div class="container">
-                <div class="section-header reveal">
-                    <span class="section-subtitle">Find Us</span>
-                    <h2 class="section-title">Get In Touch</h2>
-                    <div class="section-line"></div>
-                </div>
-
-                <div class="contact-grid">
-                    <div class="contact-info-panel reveal">
-                        <div class="info-card">
-                            <div class="info-icon">📍</div>
-                            <div class="info-text">
-                                <h4>Alamat Utama</h4>
-                                <p>Jl. Coffee Aesthetic No. 45, Kuningan, Jawa Barat</p>
-                            </div>
-                        </div>
-                        <div class="info-card">
-                            <div class="info-icon">📞</div>
-                            <div class="info-text">
-                                <h4>Hubungi Kami</h4>
-                                <p>+62 812-3456-7890</p>
-                            </div>
-                        </div>
-                        <div class="info-card">
-                            <div class="info-icon">✉️</div>
-                            <div class="info-text">
-                                <h4>Email Support</h4>
-                                <p>hello@aromaandco.com</p>
-                            </div>
-                        </div>
-                        <div class="info-card">
-                            <div class="info-icon">🕒</div>
-                            <div class="info-text">
-                                <h4>Jam Operasional</h4>
-                                <p>Senin - Minggu | 08.00 - 23.00 WIB</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="contact-map reveal">
-                        <!-- Placeholder Peta Interaktif Aesthetic -->
-                        <div class="map-placeholder">
-                            <div class="map-icon">☕</div>
-                            <p class="map-title">Aroma & Co. Kuningan</p>
-                            <span class="map-coords">Latitude: -6.9757 | Longitude: 108.4831</span>
-                            <span class="map-btn">Buka Google Maps</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- 7. FOOTER -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-about">
-                    <a href="#" class="footer-logo">Aroma<span>&</span>Co.</a>
-                    <p class="footer-desc">Ruang temu nyaman penyaji kopi premium berdedikasi tinggi demi kualitas dan kesempurnaan rasa.</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Navigation</h4>
-                    <ul>
-                        <li><a href="#hero">Home</a></li>
-                        <li><a href="#menu">Popular Menu</a></li>
-                        <li><a href="#gallery">Sanctuary</a></li>
-                        <li><a href="#reservation">Reserve Table</a></li>
-                    </ul>
-                </div>
-                <div class="footer-social">
-                    <h4>Follow Our Journey</h4>
-                    <p>Ikuti keseharian kami di media sosial kami.</p>
-                    <div class="social-icons">
-                        <a href="#" aria-label="Instagram">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                        </a>
-                        <a href="#" aria-label="TikTok">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
-                        </a>
-                        <a href="#" aria-label="YouTube">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Aroma & Co. All Rights Reserved. Crafted with ❤️ for Coffee Lovers By Lutfi Hardi Mukhlisin.</p>
-            </div>
+      <div class="timeline">
+        <div class="timeline-event reveal-on-scroll">
+          <div class="timeline-point"></div>
+          <div class="timeline-box">
+            <span class="timeline-date">Tahap 01 — Direct Sourcing</span>
+            <h3>Biji Kopi Terpilih</h3>
+            <p>Kami bekerja sama secara langsung dengan petani kopi di lereng pegunungan Flores dan Kintamani untuk memetik buah ceri merah matang yang sempurna.</p>
+          </div>
         </div>
-    </footer>
 
-    <!-- Back to top -->
-    <button class="back-to-top" id="backToTop" aria-label="Scroll back to top">↑</button>
+        <div class="timeline-event reveal-on-scroll">
+          <div class="timeline-point"></div>
+          <div class="timeline-box">
+            <span class="timeline-date">Tahap 02 — Micro-Roasting</span>
+            <h3>Pemanggangan Presisi</h3>
+            <p>Biji dipanggang dalam kuantitas kecil (*small batch*) menggunakan pemantau suhu digital modern guna melepaskan karakteristik aroma asli terbaik tanpa hangus.</p>
+          </div>
+        </div>
 
-    <script src="js/main.js">
-        document.addEventListener("DOMContentLoaded", function() {
-  const revealElements = document.querySelectorAll('.reveal-on-scroll');
+        <div class="timeline-event reveal-on-scroll">
+          <div class="timeline-point"></div>
+          <div class="timeline-box">
+            <span class="timeline-date">Tahap 03 — Crafting & Serving</span>
+            <h3>Sentuhan Barista</h3>
+            <p>Diekstraksi menggunakan mesin espresso bersuhu stabil serta teknik penuangan manual berstandar kompetisi dunia untuk menjaga kualitas rasa akhir tetap konsisten.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        // Tambahkan class 'active' saat elemen masuk ke layar
-        entry.target.classList.add('active');
-      }
-    });
-  }, {
-    threshold: 0.15 // Elemen akan terpicu jika 15% bagiannya sudah terlihat di layar
-  });
+  <!-- FOOTER -->
+  <footer id="lokasi" class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <h2>SENSORY.</h2>
+        <p>Menghadirkan pengalaman bersantai yang sunyi, lambat, dan berkelas melalui secangkir kopi istimewa.</p>
+      </div>
+      <div class="footer-nav">
+        <h4>Tautan Cepat</h4>
+        <ul>
+          <li><a href="#">Tentang Kami</a></li>
+          <li><a href="#menu">Anatomi Menu</a></li>
+          <li><a href="#journey">Proses Kami</a></li>
+          <li><a href="#">Reservasi Tempat</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Lokasi & Jam Kerja</h4>
+        <p>Jl. Senopati Raya No. 42, Kebayoran Baru, Jakarta Selatan</p>
+        <p>Setiap Hari: 08.00 WIB — 22.00 WIB</p>
+        <p>Email: hello@sensoryroast.com</p>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; 2026 SENSORY Coffee. Seluruh Hak Cipta Dilindungi.</p>
+      <p>Seni Bersantai dalam Cangkir Anda.</p>
+    </div>
+  </footer>
 
-  revealElements.forEach(element => {
-    observer.observe(element);
-  });
-});
-    </script>
+  <!-- Import File JS Eksternal -->
+  <script src="script.js"></script>
 </body>
 </html>
