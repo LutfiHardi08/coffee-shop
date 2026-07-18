@@ -292,19 +292,53 @@
                         </div>
                     </div>
 
-                   <!-- MAP CONTAINER (PERBAIKAN: PETA AKTIF & INTERAKTIF) -->
-                    <div class="map-container">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521268092828!2d106.8249646740685!3d-6.194689660688324!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f421a11f32a3%3A0x26c1c3c39d1b277d!2sMonumen%20Nasional!5e0!3m2!1sid!2sid!4v1710000000000!5m2!1sid!2sid" 
-                            width="100%" 
-                            height="100%" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade"
-                            title="Lokasi AromaAethel Coffee Shop">
-                        </iframe>
-                    </div>
+                   <!-- MAP CONTAINER (METODE: Vektor SVG Premium dengan Deep Linking) -->
+<div class="map-container">
+    <div class="luxury-map">
+        <!-- Desain Vektor Topografi Estetik Peta Jalanan Kedai Kopi -->
+        <svg class="map-svg" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+            <!-- Grid Garis Jalanan Kota (Minimalis Accent) -->
+            <line x1="0" y1="80" x2="400" y2="80" stroke="#E2DCD6" stroke-width="6" />
+            <line x1="0" y1="200" x2="400" y2="200" stroke="#E2DCD6" stroke-width="4" />
+            <line x1="120" y1="0" x2="120" y2="300" stroke="#E2DCD6" stroke-width="6" />
+            <line x1="280" y1="0" x2="280" y2="300" stroke="#E2DCD6" stroke-width="4" />
+            
+            <!-- Diagonal Park Avenue -->
+            <line x1="0" y1="300" x2="400" y2="0" stroke="#E2DCD6" stroke-width="2" stroke-dasharray="4" />
+            
+            <!-- Zona Taman Hijau Sekitar Kedai -->
+            <rect x="140" y="20" width="120" height="50" rx="6" fill="#EAE5E0" />
+            <text x="200" y="50" font-family="system-ui" font-size="10" fill="#8B5E3C" text-anchor="middle" font-weight="600" opacity="0.6">GREEN PARK AREA</text>
+            
+            <!-- Pin Lokasi Utama (AromaAethel) -->
+            <g class="map-pin-group">
+                <!-- Efek Radar Denyut Lingkaran Pin -->
+                <circle cx="120" cy="80" r="16" fill="rgba(212, 160, 23, 0.2)" class="pin-pulse" />
+                <!-- Pin Fisik Kepala -->
+                <circle cx="120" cy="74" r="8" fill="#D4A017" />
+                <path d="M120 84 L114 76 L126 76 Z" fill="#D4A017" />
+                <!-- Titik Pusat Pin -->
+                <circle cx="120" cy="74" r="3" fill="#FFFFFF" />
+            </g>
+            
+            <!-- Label Teks Peta -->
+            <text x="135" y="85" font-family="system-ui" font-size="12" fill="#6F4E37" font-weight="700">AromaAethel Coffee</text>
+            <text x="135" y="98" font-family="system-ui" font-size="9" fill="#777777">Premium Boulevard No. 88</text>
+        </svg>
+
+        <!-- Overlay Kartu Aksi Konversi Panduan Arah -->
+        <div class="map-action-overlay">
+            <div class="map-card-info">
+                <h4>Buka Petunjuk Arah?</h4>
+                <p>Akses rute navigasi langsung via aplikasi Google Maps ke lokasi kami.</p>
+                <!-- Tautan Deep Link yang aman dan langsung membuka Aplikasi Maps / Browser Tab Baru -->
+                <a href="https://maps.google.com/?q=Monumen+Nasional+Jakarta" target="_blank" rel="noopener noreferrer" class="btn btn-accent btn-sm">
+                    <span>🚗</span> Buka Navigasi
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
                 </div>
             </div>
         </section>
