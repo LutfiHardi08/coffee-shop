@@ -1,90 +1,118 @@
-/* ==========================================================================
-   DATABASE RASIO KOMPOSISI MENU KOPI
-   ========================================================================== */
-const brewData = {
-  flatwhite: {
-    name: "Flat White",
-    desc: "Kombinasi klasik dengan lapisan susu berbusa sangat tipis (microfoam) yang menjaga kekuatan rasa espresso.",
-    espresso: 30,
-    milk: 60,
-    foam: 10
-  },
-  latte: {
-    name: "Caffè Latte",
-    desc: "Minuman susu dominan bertekstur manis alami berkat proses pemanasan susu uap yang berlimpah dan foam tebal.",
-    espresso: 20,
-    milk: 70,
-    foam: 10
-  },
-  cortado: {
-    name: "Cortado",
-    desc: "Minuman khas Spanyol dengan komposisi seimbang yang kuat guna meredam keasaman tinggi espresso tanpa menyembunyikan rasanya.",
-    espresso: 50,
-    milk: 50,
-    foam: 0
-  }
-};
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // ==========================================
+    // 1. GLOBAL ELEMENT SELECTORS
+    // ==========================================
+    const header = document.querySelector('.site-header');
+    const menuToggle = document.getElementById('menuToggle');
+    const mainNav = document.getElementById('mainNav');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('section');
+    const backToTopBtn = document.getElementById('backToTop');
 
-/* ==========================================================================
-   FUNGSI UPDATE LAYER GELAS
-   ========================================================================== */
-function updateBrew(menuKey) {
-  const data = brewData[menuKey];
-  if (!data) return;
-  
-  // Update nilai numerik teks di layar
-  document.getElementById('ratio-name').innerText = data.name;
-  document.getElementById('ratio-desc').innerText = data.desc;
-  document.getElementById('val-espresso').innerText = data.espresso + "%";
-  document.getElementById('val-milk').innerText = data.milk + "%";
-  document.getElementById('val-foam').innerText = data.foam + "%";
+    // ==========================================
+    // 2. STICKY NAVBAR MANAGEMENT
+    // ==========================================
+    const handleScroll = () => {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+            backToTopBtn.classList.add('visible');
+        } else {
+            header.classList.remove('scrolled');
+            backToTopBtn.classList.remove('visible');
+        }
+    };
+    window.addEventListener('scroll', handleScroll);
 
-  // Animasi transisi tinggi lapisan gelas fisik CSS
-  document.getElementById('layer-espresso').style.height = data.espresso + "%";
-  document.getElementById('layer-milk').style.height = data.milk + "%";
-  document.getElementById('layer-foam').style.height = data.foam + "%";
-}
+    // ==========================================
+    // 3. RESPONSIVE NAVIGATION SHELL (HAMBURGER)
+    // ==========================================
+    const toggleMobileMenu = () => {
+        mainNav.classList.toggle('open');
+        menuToggle.classList.toggle('open');
+    };
 
-/* ==========================================================================
-   INITIALIZATION & EVENT LISTENERS
-   ========================================================================== */
-document.addEventListener("DOMContentLoaded", () => {
-  
-  // 1. Set Default Gelas Pertama Kali (Flat White)
-  document.getElementById('layer-espresso').style.height = "30%";
-  document.getElementById('layer-milk').style.height = "60%";
-  document.getElementById('layer-foam').style.height = "10%";
+    menuToggle.addEventListener('click', toggleMobileMenu);
 
-  // 2. Event Listener untuk Menu Selector
-  const menuButtons = document.querySelectorAll('.menu-item');
-  menuButtons.forEach(button => {
-    button.addEventListener('click', (event) => {
-      // Hilangkan class active dari tombol lama
-      menuButtons.forEach(btn => btn.classList.remove('active'));
-      
-      // Tambahkan class active ke tombol yang sedang diklik
-      const currentButton = event.currentTarget;
-      currentButton.classList.add('active');
-      
-      // Update data visualizer berdasarkan attribute "data-menu"
-      const menuKey = currentButton.getAttribute('data-menu');
-      updateBrew(menuKey);
+    // Menutup menu mobile secara otomatis saat salah satu link diklik
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mainNav.classList.remove('open');
+            menuToggle.classList.remove('open');
+        });
     });
-  });
 
-  // 3. Mekanisme Scroll Reveal (Fade-In-Up)
-  const revealElements = document.querySelectorAll('.reveal-on-scroll');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-      }
+    // ==========================================
+    // 4. ACTIVE NAVIGATION LINK TRACKING
+    // ==========================================
+    const activeMenuOnScroll = () => {
+        let scrollPosition = window.scrollY + 120; // offset untuk kecocokan posisi visual
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute('id');
+
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${sectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+    };
+    window.addEventListener('scroll', activeMenuOnScroll);
+
+    // ==========================================
+    // 5. ANIMASI SCROLL REVEAL (INTERSECTION OBSERVER)
+    // ==========================================
+    const revealOptions = {
+        threshold: 0.15,
+        rootMargin: "0px 0px -50px 0px"
+    };
+
+    const revealCallback = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target); // Hanya animasi satu kali saat meluncur masuk
+            }
+        });
+    };
+
+    const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
+    
+    const elementsToReveal = document.querySelectorAll('.reveal');
+    elementsToReveal.forEach(el => revealObserver.observe(el));
+
+    // ==========================================
+    // 6. LOGIKA BACK TO TOP UTILITY
+    // ==========================================
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     });
-  }, {
-    threshold: 0.1 // Terpicu ketika 10% elemen masuk viewport
-  });
 
-  revealElements.forEach(element => {
-    observer.observe(element);
-  });
+    // ==========================================
+    // 7. ARSITEKTUR VALDASI FORM FRONTEND KONTROL
+    // ==========================================
+    const reservationForm = document.getElementById('reservationForm');
+    if (reservationForm) {
+        reservationForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Pengumpulan data (Sangat siap diintegrasikan dengan API / AJAX)
+            const formData = new FormData(reservationForm);
+            const data = Object.fromEntries(formData.entries());
+            
+            // Tampilan notifikasi kustom minimalis premium
+            alert(`Terima kasih, ${data.name}! Reservasi Anda untuk tanggal ${data.date} pukul ${data.time} (Jumlah: ${data.guests} Orang) berhasil dicatat secara lokal pada sistem Frontend.`);
+            
+            reservationForm.reset();
+        });
+    }
 });
