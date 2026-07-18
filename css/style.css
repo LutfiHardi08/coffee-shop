@@ -840,3 +840,34 @@ input, select, textarea {
     .reservation-box { padding: 30px 20px; }
     .footer-grid { grid-template-columns: 1fr; }
 }
+
+.social-icons {
+    display: flex;
+    gap: 12px;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-smooth);
+    color: rgba(255, 255, 255, 0.7); /* Warna default ikon sebelum di-hover */
+}
+
+/* Mengatur ukuran grafis SVG di dalam lingkaran */
+.social-icon svg {
+    width: 18px;
+    height: 18px;
+    transition: var(--transition-smooth);
+}
+
+/* Efek Hover Premium */
+.social-icon:hover {
+    background-color: var(--color-accent);
+    transform: translateY(-3px);
+    color: #1A1412; /* Warna ikon berubah gelap kontras saat background menjadi emas (Accent) */
+}
