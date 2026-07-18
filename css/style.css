@@ -871,3 +871,19 @@ input, select, textarea {
     transform: translateY(-3px);
     color: #1A1412; /* Warna ikon berubah gelap kontras saat background menjadi emas (Accent) */
 }
+
+.map-container {
+    height: 450px;
+    background-color: #E2DCD6;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md); /* Menambahkan shadow halus agar konsisten dengan form reservasi */
+    position: relative;
+}
+
+/* Memastikan iframe peta mengisi penuh kontainer dengan rapi */
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
